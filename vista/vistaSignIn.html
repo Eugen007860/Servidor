@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Registrarse</title>
+    <link rel="stylesheet" type="text/css" href="../../css/estiloFormulario.css" />
+  </head>
+  <form id="signin-form" onsubmit="return signIn()">
+    <h1>SIGN IN</h1>
+    <input type="username" placeholder="Username" name="username" required />
+    <input type="password" placeholder="Password" name="password" required />
+    <input type="submit" value="Sign In" />
+  </form>
+  <script>
+    function signIn() {
+      // (A) GET EMAIL + PASSWORD
+      var data = new FormData(document.getElementById("signin-form"));
+      // (B) AJAX REQUEST
+      fetch("../signIn.php", { method: "POST", body: data })
+        .then((res) => {
+          return res.text();
+        })
+        .then((txt) => {
+          console.log(txt);
+          if (txt == "OK") {
+            location.href = "../../index.php";
+          } else if (txt == "El usuario existe") {
+            alert("El usuario ya existe");
+          }
+        });
+      return false;
+    }
+  </script>
+</html>

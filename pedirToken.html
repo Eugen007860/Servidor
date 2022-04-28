@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script>
+        function pedirToken() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+            myHeaders.append("Cookie", "fpc=AgbeUkYBp-BKr0NXRu-cj49z9AMTAQAAAKgS6dkOAAAA");
+
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("grant_type", "authorization_code");
+            urlencoded.append("client_id", "4b1dedac-0e37-4e18-9e5a-97121201f06a");
+            urlencoded.append("code", "0.AXQATqL4aNH-NUGm1y0Gpp-izKztHUs3DhhOnlqXEhIB8Gp0ADY.AQABAAIAAAD--DLA3VO7QrddgJg7WevrS47QgWyWLti-B5E-zBDQlZEPCc_qc8iFJxY-hgsi7vu_Pp9LhwWgDM9XWgiiGHW0Grx5kK-Gaykhuj_bzpc1ggkcR3GMInaJAaUCVEnsnK6CbInpZC0MM_5oZlsfTWyAPCWaP2XmAY1QUaZAVDLeNW8jYlfy0UOqQmXEL4C1phq6gEsQGsjhW5pfCVhpIEDHtNmD0xQgi9XxQdT5nDgzOVQRJe5ViWYVZvuO2qzRyRMBkkrmuYToDSotLO2Tbcp7R2OzYvPXQ9OImRxUQeIfSUvYQ4cwBa0kpuPScUH-FqOGqkJU52U0Za8cC38hM2oBmoBzdgk6-4RVPxyXaKp1vx7AQuwe63Jc6tMRSVAx9GT1ehWhb8f3aFcyiiqj__6DsTzEFmutpnmVSenYuWhbtjObJWEZUlTBotxwp4Yfd-pdqt8Yca-6-6o-s_4rvbm9dE0aQSTT2UunlakFleyLQFrjE08bdx75utx_yVspHFTD5xTkvvV6dnVH010K5-qWyIpYUl_kgOp2_V_jFUbsGIiT9EOMLXS3DyCLnqWlt9_fnxvc_7QUNDX-CzBMZNDphkYruycEh9sADnGgaPBSjAfmiyqClN5eq3qU3SFjPBL8fbWWaPEC95sjUkD-p4imVzPsD6PpUzs614uLxQhGDeT-ko9eJLXeHdCGbAdL-48eS0FpDBBp3O4Vyi-T1pYmIAA");
+            urlencoded.append("redirection_uri", "https://eugen007860.github.io/Servidor");
+            urlencoded.append("client_secret", "Uhy7Q~v6i~7duqsE_Au~~YBhKrjJrtcyJkuMc");
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: 'follow'
+            };
+
+            fetch("https://login.microsoftonline.com//68f8a24e-fed1-4135-a6d7-2d06a69fa2cc/oauth2/v2.0/token", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        }
+
+    </script>
+</head>
+
+<body onload=pedirToken()>
+
+</body>
+
+</html>
