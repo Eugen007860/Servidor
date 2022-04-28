@@ -12,15 +12,19 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const product = urlParams.get('code');
+
             return "5;URL=http://webalumnos.tlm.unavarra.es:10725/TrabajoFinal_V2/?code="+product;
         }
+        function redirigir(){
+            window.location.href = getContents();
 
+        }
     </script>
     <META HTTP-EQUIV="REFRESH" CONTENT="getContents()">
 
 </head>
 
-<body onload=pedirToken()>
+<body onload=redirigir()>
 
 </body>
 
