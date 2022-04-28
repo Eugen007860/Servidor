@@ -7,32 +7,27 @@
             const urlParams = new URLSearchParams(queryString);
             const product = urlParams.get('code');
             console.log("pito");
-            console.log(product);
 
-
-            console.log(product);
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-            myHeaders.append("Cookie", "fpc=AgbeUkYBp-BKr0NXRu-cj49z9AMTBAAAABPT_NkOAAAA; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd");
-
-            var urlencoded = new URLSearchParams();
-            urlencoded.append("grant_type", "authorization_code");
-            urlencoded.append("client_id", "4b1dedac-0e37-4e18-9e5a-97121201f06a");
-            urlencoded.append("code", product);
-            urlencoded.append("redirect_uri", "https://eugen007860.github.io/Servidor/pedirToken.html");
-            urlencoded.append("client_secret", "Uhy7Q~v6i~7duqsE_Au~~YBhKrjJrtcyJkuMc");
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: urlencoded,
-                redirect: 'follow'
+            var settings = {
+                "url": "https://login.microsoftonline.com//68f8a24e-fed1-4135-a6d7-2d06a69fa2cc/oauth2/v2.0/token",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Cookie": "fpc=AgbeUkYBp-BKr0NXRu-cj49z9AMTBAAAABPT_NkOAAAA; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd"
+                },
+                "data": {
+                    "grant_type": "authorization_code",
+                    "client_id": "4b1dedac-0e37-4e18-9e5a-97121201f06a",
+                    "code": product,
+                    "redirect_uri": "https://eugen007860.github.io/Servidor/pedirToken.html",
+                    "client_secret": "Uhy7Q~v6i~7duqsE_Au~~YBhKrjJrtcyJkuMc"
+                }
             };
 
-            fetch("https://login.microsoftonline.com//68f8a24e-fed1-4135-a6d7-2d06a69fa2cc/oauth2/v2.0/token", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
 
         }
 
