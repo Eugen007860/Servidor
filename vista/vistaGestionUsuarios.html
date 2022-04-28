@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gestión usuarios</title>
+    <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+  </head>
+  <script>
+    function changeUserRoleAJAX(value, idusuario) {
+      // (A) GET ROLE
+      var formData = new FormData();
+      formData.append("value", value);
+      formData.append("idusuario", idusuario);
+      // (B) AJAX REQUEST
+      fetch("cambiarRol.php", { method: "POST", body: formData })
+        .then((res) => {
+          return res.text();
+        })
+        .then((txt) => {
+          console.log(txt);
+          if (txt == "OK") {
+            alert("Se ha cambiado el rol correctamente.");
+          } else {
+            alert("Error");
+          }
+        });
+      return false;
+    }
+    function eliminateUserAJAX(idusuario) {
+      document.getElementById(idusuario).remove();
+      // (A) GET ROLE
+      var formData = new FormData();
+      formData.append("idusuario", idusuario);
+      // (B) AJAX REQUEST
+      fetch("eliminarUser.php", { method: "POST", body: formData })
+        .then((res) => {
+          return res.text();
+        })
+        .then((txt) => {
+          console.log(txt);
+          if (txt == "OK") {
+            alert("Se ha eliminado correctamente.");
+          } else {
+            alert("Error");
+          }
+        });
+      return false;
+    }
+  </script>
+  <body>
+    <center>
+      <h2>##titulo##</h2>
+      <table border="1">
+        <tr>
+          <th>IdUsuario</th>
+          <th>Username</th>
+          <th  type=##borrate##>Rol</th>
+          <th>Eliminar</th>
+        </tr>
+        ##fila##
+        <tr id="##idusuario##">
+          <td>##idusuario##</td>
+          <td>##username##</td>
+          <td ##escondido##>
+            <select
+              id="roles "
+              onchange="changeUserRoleAJAX(this.value, ##idusuario##)"
+            >
+              <option value="0" ##default0##>Administrador</option>
+              <option value="1" ##default1##>Usuario</option>
+              <option value="-1" ##default-1##>Anónimo</option>
+            </select>
+          </td>
+          <td>
+            <form onsubmit="eliminateUserAJAX(##idusuario##)" method="post">
+              <input
+                type="submit"
+                name="test"
+                id="test"
+                value="ELIMINAR"
+              /><br />
+            </form>
+          </td>
+        </tr>
+        ##fila##
+      </table>
+      <br />
+      <br />
+      ##retorno##
+    </center>
+  </body>
+</html>
