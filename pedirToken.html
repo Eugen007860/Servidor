@@ -13,7 +13,7 @@
             const urlParams = new URLSearchParams(queryString);
             const product = urlParams.get('code');
 
-            return "http://webalumnos.tlm.unavarra.es:10725/TrabajoFinal_V2/?code="+product;
+            return "http://webalumnos.tlm.unavarra.es:10725/TrabajoFinal_V2/php/asignarTokenAcceso.php?code="+product;
         }
         function redirigir(){
             window.location.href = getContents();
